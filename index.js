@@ -1,17 +1,25 @@
 require('dotenv').config();
-const express = require('express');
-const connectDB = require('./src/config/db');
-const blogs = require('./src/router/blogs.router');
 
+const express = require('express');
 const app = express();
+
+const connectDB = require('./src/config/db');
+const blogsRouter = require('./src/router/blogs.router');
+const logger = require('./src/middleware/logger.middleware');
+
 const port = 5000;
+
+app.use(express.json());
 
 // Default Router
 app.get('/', (req, res) => {
   res.send('Hello Wrold');
 });
+
+app.use(logger);
+
 // Main Router
-app.use('/api/v1/', blogs);
+app.use('/api/v1/blog', blogsRouter);
 
 // Error Router
 app.get('*', (req, res) => {

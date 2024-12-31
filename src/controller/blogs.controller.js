@@ -1,5 +1,8 @@
-const getAllBlogs =(req, res)=>{
-res.send("get all blogs")
-}
+const getAllBlogs = (req, res) => {
+  const userD = req.body;
 
-module.exports = {getAllBlogs}
+  console.log();
+  res.send(`Name: ${userD.name}`);
+};
+
+module.exports = { getAllBlogs };
