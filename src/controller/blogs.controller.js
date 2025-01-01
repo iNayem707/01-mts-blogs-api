@@ -9,6 +9,15 @@ const getAllBlogs = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+// GET :: api/v1/blog
+const getSingleBlogs = async (req, res) => {
+  try {
+    const blogs = await Blog.findOne();
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
 // POST :: api/v1/blog
 const createBlog = async (req, res) => {
   try {
@@ -92,4 +101,10 @@ const deleteBlog = async (req, res) => {
   }
 };
 
-module.exports = { getAllBlogs, createBlog, updateBlog, deleteBlog };
+module.exports = {
+  getAllBlogs,
+  getSingleBlogs,
+  createBlog,
+  updateBlog,
+  deleteBlog,
+};
